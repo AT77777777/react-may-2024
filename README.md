@@ -1,5 +1,5 @@
 # Project location
-https://github.com/AT77777777/js
+https://github.com/AT77777777/react-2024
 
 ## Available Scripts
 
