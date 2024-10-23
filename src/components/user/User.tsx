@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {FC} from 'react';
+import {IUser} from "../../models/IUser";
 
-const User = () => {
+type IUserProps = {
+    user: IUser;
+    lift: (id: number) => void
+}
+
+const User: FC<IUserProps> = ({user, lift}) => {
     return (
-        <div>
-            
+        <div key={user.id}>
+            {user.id} {user.firstName} {user.lastName}
+
+            <button onClick={() => {lift(user.id);}}>
+                Get all posts
+            </button>
         </div>
     );
 };

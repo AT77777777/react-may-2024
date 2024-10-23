@@ -1,5 +1,7 @@
 import axios from "axios";
-import {IUser} from "../models/IUser";
+import {IUsersResponse} from "../models/IUsersResponse";
+import {IPostsResponse} from "../models/IPostsResponse";
+import {IPost} from "../models/IPost";
 
 let axiosInstance = axios.create({
     baseURL: 'https://dummyjson.com'
@@ -14,6 +16,11 @@ axiosInstance.interceptors.request.use((request) => {
 })
 
 export const getUsers = async () => {
-    let axiosResponse = await axiosInstance.get<IUser>('/users');
-    return axiosResponse.data;
+    let axiosResponse = await axiosInstance.get<IUsersResponse>('/users');
+    return axiosResponse.data.users;
+}
+
+export const getAllPostsByUserId = async (id: number): Promise<IPost[]> => {
+    let axiosResponse = await axiosInstance.get<IPostsResponse>('/posts/user/' + id);
+    return axiosResponse.data.posts;
 }
